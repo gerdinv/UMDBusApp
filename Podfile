@@ -7,6 +7,7 @@ target 'UMDBusApp' do
 
   # Pods for UMDBusApp
   pod 'FloatingPanel'
+  pod 'SwiftyXMLParser'
 
   target 'UMDBusAppTests' do
     inherit! :search_paths

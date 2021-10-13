@@ -1,16 +1,20 @@
 PODS:
   - FloatingPanel (2.5.0)
+  - SwiftyXMLParser (5.4.0)
 
 DEPENDENCIES:
   - FloatingPanel
+  - SwiftyXMLParser
 
 SPEC REPOS:
   trunk:
     - FloatingPanel
+    - SwiftyXMLParser
 
 SPEC CHECKSUMS:
   FloatingPanel: ddb1c8cbbacd164cfee651c449febe867a28e2cb
+  SwiftyXMLParser: b0593d3bccd0029fe853ca63ab2f7bd6d7752ec4
 
-PODFILE CHECKSUM: 9a2ea8604600e029a3f4b8fd000f5178889c733e
+PODFILE CHECKSUM: 978bc42ddb99b7bd15c66cd0ac55524135207d6a
 
 COCOAPODS: 1.11.2

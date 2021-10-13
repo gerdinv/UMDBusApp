@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B34A60F270E02B500403744 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34A60E270E02B500403744 /* HomeVC.swift */; };
 		0BBC1E702706BC1600CE88E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC1E6F2706BC1600CE88E8 /* AppDelegate.swift */; };
 		0BBC1E722706BC1600CE88E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC1E712706BC1600CE88E8 /* SceneDelegate.swift */; };
 		0BBC1E772706BC1600CE88E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC1E752706BC1600CE88E8 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B34A60E270E02B500403744 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		0BBC1E6C2706BC1600CE88E8 /* UMDBusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UMDBusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BBC1E6F2706BC1600CE88E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BBC1E712706BC1600CE88E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			children = (
 				0BBC1EA62706BD9200CE88E8 /* MapVC.swift */,
 				0BBC1EA32706BD1F00CE88E8 /* SearchVC.swift */,
+				0B34A60E270E02B500403744 /* HomeVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BBC1EA72706BD9200CE88E8 /* MapVC.swift in Sources */,
+				0B34A60F270E02B500403744 /* HomeVC.swift in Sources */,
 				0BBC1EA42706BD1F00CE88E8 /* SearchVC.swift in Sources */,
 				0BBC1EAA2706BED200CE88E8 /* LocationManager.swift in Sources */,
 				0BBC1E702706BC1600CE88E8 /* AppDelegate.swift in Sources */,
@@ -624,6 +628,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -653,6 +658,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

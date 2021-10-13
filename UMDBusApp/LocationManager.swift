@@ -13,7 +13,6 @@ struct Location {
     let coordinates: CLLocationCoordinate2D?
 }
 
-
 class LocationManager: NSObject {
     static let shared = LocationManager()
         
