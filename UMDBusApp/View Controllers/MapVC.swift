@@ -173,14 +173,36 @@ class MapVC: UIViewController, SearchVCDelegate, CLLocationManagerDelegate {
             
         }.resume()
     }
+    
+    private let customView: UIView = {
+        let view = UIView()
+        view.frame = CGRect(x: 0, y: -50, width: 50, height: 30)
+//        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .blue
+        view.layer.cornerRadius = 20
+        view.tag = 1
+        return view
+    }()
 }
 
 extension MapVC: MKMapViewDelegate {
+    
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let calloutView = customView
+        view.addSubview(calloutView)
+        NSLayoutConstraint.activate([
+            calloutView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            calloutView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        ])
+    }
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(polyline: overlay as! MKPolyline)
         renderer.strokeColor = UIColor.blue
         return renderer
     }
+    
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKUserLocation) else {
@@ -192,6 +214,7 @@ extension MapVC: MKMapViewDelegate {
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "custom")
             annotationView?.canShowCallout = true
+            annotationView?.backgroundColor = .green
         } else {
             annotationView?.annotation = annotation
         }
@@ -215,6 +238,14 @@ extension MapVC: MKMapViewDelegate {
             annotationView?.image = resizedImage
         }
         
+        annotationView?.canShowCallout = false
+        
+//        let cView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+//        cView.layer.cornerRadius = 50
+//        cView.backgroundColor = .blue
+//
+//        annotationView?.detailCalloutAccessoryView = cView
+//        annotationView?.canShowCallout = true
         
         
         
