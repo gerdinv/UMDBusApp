@@ -11,6 +11,8 @@ import CoreLocation
 
 protocol SearchVCDelegate: AnyObject {
     func searchViewController(_ vc: SearchVC, didSelectLocationWith coordinates: CLLocationCoordinate2D?)
+    func searchBarClicked(_ vc: SearchVC)
+    func addVC(_ vc: SearchVC)
 }
 
 struct Building: Codable {
@@ -27,6 +29,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     var buildings : [Building]?
     var filteredBuildings: [Building]?
     var locations = [Location]()
+    var ids = ["2813", "311", "3310", "3510", "3710", "4113", "4416", "4516", "4819", "6211", "7816", "8005","8505", "8813", "9813", "9913" ]
+    var filteredIds: [String]?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -35,16 +39,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         label.font = .systemFont(ofSize: 25, weight: .bold)
         return label
     }()
-    
-     var responseCounter: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Count: "
-        label.font = .systemFont(ofSize: 12, weight: .bold)
-        return label
-    }()
   
-    private let searchBar: UISearchBar = {
+    let searchBar: UISearchBar = {
         let bar = UISearchBar()
         bar.translatesAutoresizingMaskIntoConstraints = false
         bar.searchBarStyle = UISearchBar.Style.default
@@ -60,7 +56,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
     private let tableView: UITableView = {
         let tb = UITableView()
         tb.translatesAutoresizingMaskIntoConstraints = false
-        tb.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+//        tb.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tb.register(BusInformationCell.self, forCellReuseIdentifier: BusInformationCell.identifier)
         tb.backgroundColor = .secondarySystemBackground
         return tb
     }()
@@ -70,7 +67,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         view.addSubview(titleLabel)
         view.addSubview(tableView)
         view.addSubview(searchBar)
-        view.addSubview(responseCounter)
         view.backgroundColor = .secondarySystemBackground
         tableView.delegate = self
         searchBar.delegate = self
@@ -78,14 +74,17 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         tableView.separatorStyle = .none
         setupConstraints()
         getData()
+        filteredIds = ids
+        tableView.rowHeight = 120
+
     }
     
     func setupConstraints() {
         var constraints = [NSLayoutConstraint]()
         
-        constraints.append(titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 20))
+        constraints.append(titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 26))
         constraints.append(titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20))
-        constraints.append(titleLabel.widthAnchor.constraint(equalToConstant: 250))
+        constraints.append(titleLabel.widthAnchor.constraint(equalToConstant: 150))
         constraints.append(titleLabel.heightAnchor.constraint(equalToConstant: 25))
                 
         constraints.append(searchBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10))
@@ -98,29 +97,25 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
         constraints.append(tableView.trailingAnchor.constraint(equalTo: searchBar.trailingAnchor))
         constraints.append(tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor))
 
-        constraints.append(responseCounter.topAnchor.constraint(equalTo: titleLabel.topAnchor))
-        constraints.append(responseCounter.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10))
-        constraints.append(responseCounter.widthAnchor.constraint(equalToConstant: 140))
-        
         NSLayoutConstraint.activate(constraints)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredBuildings?.count ?? 0
+//        return filteredBuildings?.count ?? 0
+        return filteredIds?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .secondarySystemBackground
-        //        cell.textLabel?.text = locations[indexPath.row].title
-        cell.textLabel?.text = filteredBuildings![indexPath.row].name
-        cell.textLabel?.numberOfLines = 0
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: BusInformationCell.identifier, for: indexPath) as! BusInformationCell
+
+//        cell.busIdLabel.text = filteredBuildings![indexPath.row].name
+        cell.busIdLabel.text = filteredIds![indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         searchBar.resignFirstResponder()
+        delegate?.addVC(self)
         tableView.deselectRow(at: indexPath, animated: true)
         
 //      let coordinate = locations[indexPath.row].coordinates
@@ -131,14 +126,23 @@ class SearchVC: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITa
 //      Notify map controller to show pin at selected place.
         delegate?.searchViewController(self, didSelectLocationWith: coordinate)
     }
+
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        delegate?.searchBarClicked(self)
+        return true
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        filteredBuildings = searchText.isEmpty ? buildings : buildings?.filter { (item: Building) -> Bool in
-            // If dataItem matches the searchText, return true to include it
-            return item.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+//        filteredBuildings = searchText.isEmpty ? buildings : buildings?.filter { (item: Building) -> Bool in
+//            // If dataItem matches the searchText, return true to include it
+//            return item.name.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+//        }
+          
+        filteredIds = searchText.isEmpty ? ids : ids.filter { (item: String) -> Bool in
+            return item.range(of: searchText, range: nil, locale: nil) != nil
         }
-        // add a transition
+        
         tableView.reloadData()
     }
 

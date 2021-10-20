@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B34A60F270E02B500403744 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34A60E270E02B500403744 /* HomeVC.swift */; };
+		0B46B1102717EE37008A0A10 /* BusInformationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46B10F2717EE37008A0A10 /* BusInformationCell.swift */; };
+		0B46B1122717F0E1008A0A10 /* BusAPICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46B1112717F0E1008A0A10 /* BusAPICaller.swift */; };
 		0BBC1E702706BC1600CE88E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC1E6F2706BC1600CE88E8 /* AppDelegate.swift */; };
 		0BBC1E722706BC1600CE88E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC1E712706BC1600CE88E8 /* SceneDelegate.swift */; };
 		0BBC1E772706BC1600CE88E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BBC1E752706BC1600CE88E8 /* Main.storyboard */; };
@@ -20,8 +22,9 @@
 		0BBC1EA42706BD1F00CE88E8 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC1EA32706BD1F00CE88E8 /* SearchVC.swift */; };
 		0BBC1EA72706BD9200CE88E8 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC1EA62706BD9200CE88E8 /* MapVC.swift */; };
 		0BBC1EAA2706BED200CE88E8 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBC1EA92706BED200CE88E8 /* LocationManager.swift */; };
+		0BC08AC027176F2E004F7E28 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC08ABF27176F2E004F7E28 /* CustomView.swift */; };
+		0BCC413B271790E200476553 /* Pods_UMDBusApp_UMDBusAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4805BAF244E865C2F66C8F12 /* Pods_UMDBusApp_UMDBusAppUITests.framework */; };
 		78487750BDDDB40D06D2FB01 /* Pods_UMDBusAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 626FB8CDED7106AE41D2D0C8 /* Pods_UMDBusAppTests.framework */; };
-		7B6514FF00115B85908F87D5 /* Pods_UMDBusApp_UMDBusAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4805BAF244E865C2F66C8F12 /* Pods_UMDBusApp_UMDBusAppUITests.framework */; };
 		9DF0092A87E43FE32A966A31 /* Pods_UMDBusApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE47EA5F940364A0E09A827B /* Pods_UMDBusApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		0B34A60E270E02B500403744 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		0B46B10F2717EE37008A0A10 /* BusInformationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusInformationCell.swift; sourceTree = "<group>"; };
+		0B46B1112717F0E1008A0A10 /* BusAPICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusAPICaller.swift; sourceTree = "<group>"; };
 		0BBC1E6C2706BC1600CE88E8 /* UMDBusApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UMDBusApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BBC1E6F2706BC1600CE88E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BBC1E712706BC1600CE88E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +65,7 @@
 		0BBC1EA32706BD1F00CE88E8 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		0BBC1EA62706BD9200CE88E8 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		0BBC1EA92706BED200CE88E8 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		0BC08ABF27176F2E004F7E28 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		38A845CDAA6D21BFBF15FB2E /* Pods-UMDBusApp-UMDBusAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UMDBusApp-UMDBusAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-UMDBusApp-UMDBusAppUITests/Pods-UMDBusApp-UMDBusAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		4805BAF244E865C2F66C8F12 /* Pods_UMDBusApp_UMDBusAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UMDBusApp_UMDBusAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56E9778DCC6806CEB418EE28 /* Pods-UMDBusAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UMDBusAppTests.debug.xcconfig"; path = "Target Support Files/Pods-UMDBusAppTests/Pods-UMDBusAppTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -92,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B6514FF00115B85908F87D5 /* Pods_UMDBusApp_UMDBusAppUITests.framework in Frameworks */,
+				0BCC413B271790E200476553 /* Pods_UMDBusApp_UMDBusAppUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +130,7 @@
 		0BBC1E6E2706BC1600CE88E8 /* UMDBusApp */ = {
 			isa = PBXGroup;
 			children = (
+				0BC08ABF27176F2E004F7E28 /* CustomView.swift */,
 				0BBC1EA82706BEBB00CE88E8 /* API */,
 				0BBC1EA52706BD2600CE88E8 /* View Controllers */,
 				0BBC1E6F2706BC1600CE88E8 /* AppDelegate.swift */,
@@ -161,6 +168,7 @@
 				0BBC1EA62706BD9200CE88E8 /* MapVC.swift */,
 				0BBC1EA32706BD1F00CE88E8 /* SearchVC.swift */,
 				0B34A60E270E02B500403744 /* HomeVC.swift */,
+				0B46B10F2717EE37008A0A10 /* BusInformationCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -168,6 +176,7 @@
 		0BBC1EA82706BEBB00CE88E8 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				0B46B1112717F0E1008A0A10 /* BusAPICaller.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -435,11 +444,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BBC1EA72706BD9200CE88E8 /* MapVC.swift in Sources */,
+				0BC08AC027176F2E004F7E28 /* CustomView.swift in Sources */,
 				0B34A60F270E02B500403744 /* HomeVC.swift in Sources */,
 				0BBC1EA42706BD1F00CE88E8 /* SearchVC.swift in Sources */,
+				0B46B1102717EE37008A0A10 /* BusInformationCell.swift in Sources */,
 				0BBC1EAA2706BED200CE88E8 /* LocationManager.swift in Sources */,
 				0BBC1E702706BC1600CE88E8 /* AppDelegate.swift in Sources */,
 				0BBC1E722706BC1600CE88E8 /* SceneDelegate.swift in Sources */,
+				0B46B1122717F0E1008A0A10 /* BusAPICaller.swift in Sources */,
 				0BBC1E7A2706BC1600CE88E8 /* UMDBusApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -547,7 +559,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -602,7 +614,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -628,7 +640,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -658,7 +670,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -682,7 +694,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8RJGU8HFWK;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -708,7 +720,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8RJGU8HFWK;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

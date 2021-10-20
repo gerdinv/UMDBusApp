@@ -6,64 +6,52 @@
 //
 
 import UIKit
+import FloatingPanel
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var button: UIButton!
-    
-    private let customView: UIView = {
-        let view = UIView()
-//        view.frame = CGRect(x: 150, y: 150, width: 250, height: 150)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .red
-        view.layer.cornerRadius = 50
-        view.tag = 1
-        return view
+    private let tableView: UITableView = {
+        let tb = UITableView()
+//        tb.translatesAutoresizingMaskIntoConstraints = false
+        tb.register(BusInformationCell.self, forCellReuseIdentifier: BusInformationCell.identifier)
+        return tb
     }()
+    
+    let panel = FloatingPanelController()
+    let searchVC = SearchVC()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        button.layer.cornerRadius = 50
         
-        let tapGesture = UIPanGestureRecognizer(target: self, action: #selector(screenClicked(_:)))
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(viewClicked(_ :)))
+        view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = 120
+//        tableView.frame = view.bounds
         
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(tapGesture)
-        view.addGestureRecognizer(gesture)
+        panel.set(contentViewController: searchVC)
+        panel.move(to: .half, animated: false, completion: nil) //Moves screen down
+        panel.addPanel(toParent: self)
         
     }
     
     private func setConstraints() {
         var constraints = [NSLayoutConstraint]()
-        constraints.append(customView.centerXAnchor.constraint(equalTo: view.centerXAnchor))
-        constraints.append(customView.centerYAnchor.constraint(equalTo: view.centerYAnchor))
-        constraints.append(customView.widthAnchor.constraint(equalToConstant: 350))
-        constraints.append(customView.heightAnchor.constraint(equalToConstant: 250))
+        
         NSLayoutConstraint.activate(constraints)
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: BusInformationCell.identifier, for: indexPath) as! BusInformationCell
+        cell.busIdLabel.text = "BOB"
+        return cell
+    }
+    
 
-    @IBAction func onClick(_ sender: Any) {
-        print("CLICKED!")   
-        view.addSubview(customView)
-        setConstraints()
-    }
-    
-    @objc private func screenClicked(_ gesture: UITapGestureRecognizer) {
-        if let viewWithTag = self.view.viewWithTag(1) {
-            viewWithTag.removeFromSuperview()
-        }
-        print("Screen clicked!")
-        
-    }
-    
-    @objc private func viewClicked(_ gesture: UITapGestureRecognizer) {
-        print("Main view clicked")
-        
-    }
-    
     /*
     // MARK: - Navigation
 

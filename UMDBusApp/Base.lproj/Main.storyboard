@@ -16,26 +16,12 @@
                     <view key="view" contentMode="scaleToFill" id="UVL-Au-Kwc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ajj-Jl-3qG">
-                                <rect key="frame" x="113" y="426" width="154" height="149"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                                <connections>
-                                    <action selector="onClick:" destination="L9f-x7-iOr" eventType="touchUpInside" id="zjp-7k-ndh"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="e6x-TY-MyV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="list.bullet.rectangle" catalog="system" id="eNx-a9-1qx">
                         <color key="badgeColor" red="0.80533820389999999" green="0.28313279149999998" blue="0.26663666959999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
-                    <connections>
-                        <outlet property="button" destination="ajj-Jl-3qG" id="fgH-df-HcL"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xtq-g7-PqC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
