@@ -75,19 +75,17 @@ class MapVC: UIViewController, SearchVCDelegate, CLLocationManagerDelegate, Floa
         mapView.frame = view.bounds
     }
     
-    override func didMove(toParent parent: UIViewController?) {
-        print("\n\n\n Floating panel moved? \n\n\n")
-    }
-    
     var secondFpc: FloatingPanelController!
 
+//  Shows a new floating panel (with cell's info)
     override func show(_ vc: UIViewController, sender: Any?) {
+        let last_position = panel.state
         panel.removePanelFromParent(animated: false, completion: nil)
         secondFpc = FloatingPanelController()
         secondFpc.view.tag = -100
         secondFpc.set(contentViewController: vc)
-        secondFpc.addPanel(toParent: self, at: -1, animated: true, completion: nil)
-        
+        secondFpc.addPanel(toParent: self)
+        secondFpc.move(to: last_position, animated: true, completion: nil)
     }
     
     
@@ -104,31 +102,37 @@ class MapVC: UIViewController, SearchVCDelegate, CLLocationManagerDelegate, Floa
         
         for cs in self.children {
             if(cs.view.tag == -100) {
+                let c = cs as! FloatingPanelController
                 UIView.transition(with: self.view, duration: 0.25, options: [.transitionCrossDissolve], animations: {
                     cs.view.removeFromSuperview()
                 }, completion: nil)
-                
-                
+                let last_position = c.state
+                print(last_position)
                 panel.addPanel(toParent: self)
+                panel.move(to: last_position, animated: false, completion: nil)
             }
-            print("\n\nchild\n\n")
         }
-
-//        secondFpc.removePanelFromParent(animated: true, completion: nil)
-
-//        panel.move(to: .half, animated: false, completion: nil)
-//        panel.hide()
-//        panel.show(animated: true, completion: nil)
         print("\n\nBUTTON CLICKED\n\n")
     }
     
+    func floatingPanelDidChangeState(_ fpc: FloatingPanelController) {
+        print("\n\nChanged states\n\n")
+    }
+    
+ 
+    
+    func floatingPanelDidMove(_ vc: FloatingPanelController) {
+        print("HEY MAN")
+        if vc.isAttracting == false {
+            
+            let loc = vc.surfaceLocation
+            let minY = vc.surfaceLocation(for: .full).y - 6.0
+            let maxY = vc.surfaceLocation(for: .tip).y + 6.0
+            vc.surfaceLocation = CGPoint(x: loc.x, y: min(max(loc.y, minY), maxY))
+        }
+    }
+    
     func addVC(_ vc: SearchVC) {
-
-
-//        panel.present(vcc, animated: true, completion: nil)
-//        let detailPanel = FloatingPanelController()
-//        detailPanel.view.backgroundColor = .green
-//        panel.set(contentViewController: detailPanel)
         let vvc = UIViewController()
         vvc.view.backgroundColor = .green
         vvc.view.addSubview(cancelButton)
@@ -136,28 +140,21 @@ class MapVC: UIViewController, SearchVCDelegate, CLLocationManagerDelegate, Floa
             cancelButton.leadingAnchor.constraint(equalTo: vvc.view.leadingAnchor, constant: 15),
             cancelButton.topAnchor.constraint(equalTo: vvc.view.topAnchor, constant: 15)
         ])
-        
-
-//        panel.set(contentViewController: vvc)
-        
-
-//        panel.addPanel(toParent: self)
-        
         show(vvc, sender: nil)
     }
     
     func searchBarClicked(_ vc: SearchVC) {
-        panel.move(to: .full, animated: true, completion: nil) //Moves screen down
-        print("\n\n Search bar clicked \n\n")
+        panel.move(to: .full, animated: true, completion: nil)
     }
     
+//  When a user selects a cell
     func searchViewController(_ vc: SearchVC, didSelectLocationWith coordinates: CLLocationCoordinate2D?) {
         guard let coordinates = coordinates else {
             print("Invalid coordiantes")
             return
         }
         
-        panel.move(to: .tip, animated: true, completion: nil) //Moves screen down
+        panel.move(to: .tip, animated: true, completion: nil)
         mapView.removeAnnotations(mapView.annotations)
         
         
@@ -186,7 +183,7 @@ class MapVC: UIViewController, SearchVCDelegate, CLLocationManagerDelegate, Floa
             }
         }
         
-        //How much we are zooming in is the decimal
+//      Updates map region
         mapView.setRegion(MKCoordinateRegion(center: coordinates, span: MKCoordinateSpan(latitudeDelta: 0.7, longitudeDelta: 0.7)), animated: true)
     }
     
@@ -288,8 +285,7 @@ extension MapVC: MKMapViewDelegate {
             label.topAnchor.constraint(equalTo: calloutView.topAnchor, constant: 10),
             label.leadingAnchor.constraint(equalTo: calloutView.leadingAnchor, constant: 15),
             label.trailingAnchor.constraint(equalTo: calloutView.trailingAnchor)
-//            calloutView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-//            calloutView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+
         ])
     }
     
@@ -300,7 +296,8 @@ extension MapVC: MKMapViewDelegate {
     }
 
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
-        panel.move(to: .tip, animated: true, completion: nil) //Moves screen down
+//      Moves screen and keyboard down when map is moved manually
+        panel.move(to: .tip, animated: true, completion: nil)
         self.searchVC.searchBar.resignFirstResponder()
     }
     
@@ -311,6 +308,7 @@ extension MapVC: MKMapViewDelegate {
         }
     }
     
+//  Custom map pins
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !(annotation is MKUserLocation) else {
             return nil
@@ -326,16 +324,12 @@ extension MapVC: MKMapViewDelegate {
         }
         
         if(annotation.title == "Bird") {
-            
-
             // Resize image
             let pinImage = UIImage(named: "bus-icon")
             let size = CGSize(width: 25, height: 25)
             UIGraphicsBeginImageContext(size)
             pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
             let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
-            
-            
             annotationView?.image = resizedImage
         } else {
             // Resize image
@@ -346,18 +340,7 @@ extension MapVC: MKMapViewDelegate {
             let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
             annotationView?.image = resizedImage
         }
-        
-        
-        
-        
-//        let cView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-//        cView.layer.cornerRadius = 50
-//        cView.backgroundColor = .blue
-//
-//        annotationView?.detailCalloutAccessoryView = cView
-//        annotationView?.canShowCallout = true
-    
-        
+
         return annotationView
     }
 }
